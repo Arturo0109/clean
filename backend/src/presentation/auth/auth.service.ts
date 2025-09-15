@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { PrismaService } from '../../infrastructure/prisma/prisma.service';
+import { PrismaService } from '../../infrastructure/prisma.service';
 import { UserPrismaRepository } from '../../infrastructure/prisma/repositories/user.prisma.repository';
 import { RegisterUserUseCase } from '../../application/register-user.usecase';
 import { LoginUserUseCase } from '../../application/login-user.usecase';
