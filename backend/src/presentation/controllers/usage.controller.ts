@@ -1,6 +1,6 @@
 import { Controller, Post, Req, UseGuards } from '@nestjs/common';
 import { ConsumeUsageUseCase } from 'src/application/cosume-usage.usecase';
-import { UsagePrismaRepository } from 'src/infrastructure/prisma/repositories/usage.prisma.respository';
+import { UsagePrismaRepository } from 'src/infrastructure/prisma/repositories/usage.prisma.repository';
 import { PrismaService } from 'src/infrastructure/prisma/prisma.service';
 import { JwtAuthGuard } from '../auth/jwt.guard';
 
