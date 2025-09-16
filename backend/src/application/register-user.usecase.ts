@@ -1,5 +1,5 @@
 import { UserRepository } from "src/domain/repositories/user.repository";
-import { User } from "src/domain/entities/user.entity";
+import { User } from "src/domain/user.entity";
 import * as bcrypt from 'bcrypt';
 
 export class RegisterUserUseCase {
