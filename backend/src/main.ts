@@ -1,8 +1,17 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { ValidationPipe } from '@nestjs/common';
+import helmet from 'helmet';
+
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  app.use(helmet());
+  app.enableCors();
+  app.useGlobalPipes(new ValidationPipe({whitelist: true}));
+  
   await app.listen(process.env.PORT ?? 3001);
+  console.log('Tamos en el puerto 3001 papu');
 }
 bootstrap();
