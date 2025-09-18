@@ -7,6 +7,7 @@ export class PrismaService
   implements OnModuleInit, OnModuleDestroy
 {
   anonymousUsage: any;
+  correction: any;
   async onModuleInit() {
     await this.$connect();
     console.log('Connected to the database');
