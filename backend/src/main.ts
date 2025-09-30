@@ -1,17 +1,19 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { ValidationPipe } from '@nestjs/common';
+import { Logger, ValidationPipe } from '@nestjs/common';
 import helmet from 'helmet';
 
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  const logger = new Logger('Bootstrap');
 
   app.use(helmet());
   app.enableCors();
   app.useGlobalPipes(new ValidationPipe({whitelist: true}));
   
-  await app.listen(process.env.PORT ?? 3000);
-  console.log('Tamos en el puerto 3000 papu');
+  const port = process.env.PORT ?? 3000;
+  await app.listen(port);
+  logger.log(`Application is running on: ${await app.getUrl()}`);
 }
 bootstrap();
