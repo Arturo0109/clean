@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
 import { PrismaService } from '../../infrastructure/prisma.service';
 import { UseDto } from './dto/use.dto';
-import { AnonymousUsage } from '../../domain/anonymous-usage.entity';
+import { AnonymousUsage } from '../../domain/entities/anonymous-usage.entity';
 
 @Injectable()
 export class AnonymousService {

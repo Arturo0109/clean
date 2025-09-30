@@ -4,7 +4,7 @@ import * as bcrypt from 'bcrypt';
 import { PrismaService } from '../../infrastructure/prisma.service';
 import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
-import { User } from '../../domain/user.entity';
+import { User } from '../../domain/entities/user.entity';
 
 @Injectable()
 export class AuthService {
@@ -72,7 +72,7 @@ export class AuthService {
     return {
       id: user.id,
       email: user.email,
-      passwordHash: user.password,
+      password: user.password,
       createdAt: user.createdAt,
     } as User;
   }
