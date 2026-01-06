@@ -1,11 +1,12 @@
 import { Body, Controller, Post, Req, UseGuards } from '@nestjs/common';
-import { CorrectionsService } from './corrections.service';
+import { CorrectTextUseCase } from '../../application/correct-text.usecase';
 import type { Request } from 'express';
 import { AuthGuard } from '@nestjs/passport';
+import * as crypto from 'crypto';
 
 @Controller('corrections')
 export class CorrectionsController {
-  constructor(private correctionsService: CorrectionsService) {}
+  constructor(private correctTextUseCase: CorrectTextUseCase) { }
 
   @Post('anonymous')
   async correctAnonymous(@Req() req: Request, @Body() body: { text: string }) {
@@ -14,13 +15,19 @@ export class CorrectionsController {
       req.headers['x-session-id']?.toString() ||
       crypto.randomUUID();
 
-    return this.correctionsService.correctAnonymous(sessionId, body.text);
+    return this.correctTextUseCase.execute({
+      sessionId,
+      text: body.text
+    });
   }
 
   @UseGuards(AuthGuard('jwt'))
   @Post('registered')
   async correctRegistered(@Req() req: any, @Body() body: { text: string }) {
     const userId = req.user.userId;
-    return this.correctionsService.correctRegistered(userId, body.text);
+    return this.correctTextUseCase.execute({
+      userId,
+      text: body.text
+    });
   }
 }
