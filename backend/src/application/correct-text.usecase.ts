@@ -15,7 +15,7 @@ export class CorrectTextUseCase {
     async execute(params: { userId?: string; sessionId?: string; text: string }) {
         let remainingAttempts: number | undefined;
 
-        // 1. Check permissions for Anonymous users
+        // 1.  verificar permisos para usuarios anónimos
         if (!params.userId && params.sessionId) {
             let usage = await this.anonymousUsageRepository.findBySessionId(params.sessionId);
 
@@ -29,10 +29,10 @@ export class CorrectTextUseCase {
             remainingAttempts = usage.remaining;
         }
 
-        // 2. Perform correction
+        // 2. corregir texto
         const corrected = await this.aiService.correctText(params.text);
 
-        // 3. Save/Update state
+        // 3. guardar y actualizar
         if (params.userId) {
             await this.correctionRepository.create({
                 text: params.text,

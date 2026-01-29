@@ -14,7 +14,7 @@ export class ConsumeUsageUseCase {
     userId?: string;
     sessionId?: string;
   }): Promise<{ success: boolean; remaining?: number; message: string }> {
-    // 🔹 Caso 1: Usuario registrado → ilimitado
+    // Caso 1: Usuario registrado ilimitado
     if (params.userId) {
       return {
         success: true,
@@ -22,7 +22,7 @@ export class ConsumeUsageUseCase {
       };
     }
 
-    // 🔹 Caso 2: Usuario anónimo → controlar intentos
+    //Caso 2: Usuario anónimo controlar intentos
     if (params.sessionId) {
       let usage = await this.anonymousUsageRepository.findBySessionId(
         params.sessionId

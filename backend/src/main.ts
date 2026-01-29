@@ -9,10 +9,13 @@ async function bootstrap() {
   const logger = new Logger('Bootstrap');
 
   app.use(helmet());
-  app.enableCors();
-  app.useGlobalPipes(new ValidationPipe({whitelist: true}));
-  
-  const port = process.env.PORT ?? 3000;
+  app.enableCors({
+    origin: 'http://localhost:3000',
+    credentials: true,
+  });
+  app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
+
+  const port = process.env.PORT ?? 3001;
   await app.listen(port);
   logger.log(`Application is running on: ${await app.getUrl()}`);
 }

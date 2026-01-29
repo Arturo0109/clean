@@ -17,7 +17,7 @@ export class GeminiService implements AiService {
 
         try {
             const response = await axios.post(
-                'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent',
+                'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent',
                 {
                     contents: [{ parts: [{ text: `Corrige el siguiente texto (gramática, ortografía y estilo), devuelve SOLO el texto corregido sin explicaciones ni comillas:\n\n${text}` }] }],
                 },

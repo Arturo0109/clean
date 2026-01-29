@@ -1,7 +1,7 @@
 'use client';
 
 import React, {createContext, useEffect, useState} from "react";
-import * as AuthService from "../services/AuthService";
+import * as AuthService from "../services/auth.service";
 import { getToken, removeToken } from "../lib/tokens";
 import api from "../lib/axios";
 

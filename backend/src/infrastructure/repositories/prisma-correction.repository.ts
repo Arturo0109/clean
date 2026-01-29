@@ -12,6 +12,10 @@ export class PrismaCorrectionRepository implements CorrectionRepository {
         const result = await this.prisma.correction.create({
             data,
         });
-        return new Correction(result);
+
+        return new Correction({
+            ...result,
+            userId: result.userId ?? undefined,
+        });
     }
 }
